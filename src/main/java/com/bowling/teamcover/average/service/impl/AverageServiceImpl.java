@@ -13,6 +13,7 @@ public class AverageServiceImpl implements AverageService {
 
     @Override
     public int selectTest() throws Exception {
-        return averageDao.selectTest();
+        return 0;
     }
+
 }

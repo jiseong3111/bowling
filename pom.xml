@@ -4,8 +4,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>bowling</groupId>
-    <artifactId>com.bowling.teamcover</artifactId>
+    <groupId>aaa</groupId>
+    <artifactId>net.aaa.com</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
@@ -110,9 +110,43 @@
             <artifactId>commons-fileupload</artifactId>
             <version>1.4</version>
         </dependency>
+        <!-- oauth2 login -->
+        <dependency>
+            <groupId>com.github.scribejava</groupId>
+            <artifactId>scribejava-apis</artifactId>
+            <version>5.6.0</version>
+        </dependency>
 
+        <dependency>
+            <groupId>com.github.scribejava</groupId>
+            <artifactId>scribejava-core</artifactId>
+            <version>5.6.0</version>
+        </dependency>
 
-        <!-- poi-ooxml 을 추가합니다 -->
+        <!-- 구글 소셜 로그인 구현 -->
+        <dependency>
+            <groupId>org.springframework.social</groupId>
+            <artifactId>spring-social-google</artifactId>
+            <version>1.0.0.RELEASE</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>2.12.2</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.apis</groupId>
+            <artifactId>google-api-services-gmail</artifactId>
+            <version>v1-rev20210301-1.31.0</version>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.7</version>
+            <scope>compile</scope>
+        </dependency>
+
         <dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi</artifactId>
@@ -123,23 +157,23 @@
             <artifactId>poi-ooxml</artifactId>
             <version>3.7</version>
         </dependency>
-
-        <!-- jsonView 사용 -->
-        <dependency>
-            <groupId>net.sf.json-lib</groupId>
-            <artifactId>json-lib</artifactId>
-            <version>2.3</version>
-            <classifier>jdk15</classifier>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-            <version>2.5.1</version>
-        </dependency>
-
     </dependencies>
     <build>
         <plugins>
+            <plugin>
+                <artifactId>maven-eclipse-plugin</artifactId>
+                <version>2.9</version>
+                <configuration>
+                    <additionalProjectnatures>
+                        <projectnature>org.springframework.ide.eclipse.core.springnature</projectnature>
+                    </additionalProjectnatures>
+                    <additionalBuildcommands>
+                        <buildcommand>org.springframework.ide.eclipse.core.springbuilder</buildcommand>
+                    </additionalBuildcommands>
+                    <downloadSources>true</downloadSources>
+                    <downloadJavadocs>true</downloadJavadocs>
+                </configuration>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
