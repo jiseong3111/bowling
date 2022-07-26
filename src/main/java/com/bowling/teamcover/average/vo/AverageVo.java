@@ -12,6 +12,8 @@ public class AverageVo {
     private String sprmScr;
     private String lestScr;
 
+    private String tno;
+
     private String rnum;
 
     public String getRnum() {
@@ -92,6 +94,14 @@ public class AverageVo {
 
     public void setCunm(String cunm) {
         this.cunm = cunm;
+    }
+
+    public String getTno() {
+        return tno;
+    }
+
+    public void setTno(String tno) {
+        this.tno = tno;
     }
 
     @Override

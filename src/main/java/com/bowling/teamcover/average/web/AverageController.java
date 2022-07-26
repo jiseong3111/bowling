@@ -105,16 +105,18 @@ public class AverageController {
                         } else if (cellIndex == 2) {
                             vo.setCunm(value);
                         } else if (cellIndex == 3) {
-                            vo.setMbno(value);
+                            vo.setTno(value);
                         } else if (cellIndex == 4) {
-                            vo.setGmCnt(value);
+                            vo.setMbno(value);
                         } else if (cellIndex == 5) {
-                            vo.setTtScr(value);
+                            vo.setGmCnt(value);
                         } else if (cellIndex == 6) {
-                            vo.setLestScr(value);
+                            vo.setTtScr(value);
                         } else if (cellIndex == 7) {
-                            vo.setSprmScr(value);
+                            vo.setLestScr(value);
                         } else if (cellIndex == 8) {
+                            vo.setSprmScr(value);
+                        } else if (cellIndex == 9) {
                             vo.setFxprBfdt(value);
                         }
                     }
@@ -124,7 +126,8 @@ public class AverageController {
                 }
             }
             //디비 삽입 필요
-            int cnt = averageService.selectTest();
+            Map cnt = averageService.selectTest();
+            System.out.println(cnt.size());
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -5,6 +5,8 @@ import com.bowling.teamcover.average.service.dao.AverageDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Map;
+
 @Service
 public class AverageServiceImpl implements AverageService {
 
@@ -12,8 +14,8 @@ public class AverageServiceImpl implements AverageService {
     AverageDao averageDao;
 
     @Override
-    public int selectTest() throws Exception {
-        return 0;
+    public Map selectTest() throws Exception {
+        return averageDao.selectTest();
     }
 
 }

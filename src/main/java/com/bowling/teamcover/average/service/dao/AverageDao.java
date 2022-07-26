@@ -1,17 +1,13 @@
 package com.bowling.teamcover.average.service.dao;
 
-import org.apache.ibatis.session.SqlSession;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
-
-@Repository
-public class AverageDao {
-
-    @Autowired
-    SqlSession sqlSession;
+import java.util.Map;
 
 
+@Mapper
+public interface AverageDao {
 
-
+    public Map selectTest();
 }

@@ -3,6 +3,8 @@
 
 <mapper namespace="com.bowling.teamcover.average.service.dao.AverageDao">
 
-
+    <select id="selectTest" resultType="Map">
+        SELECT * FROM BOARD
+    </select>
 
 </mapper>
