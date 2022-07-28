@@ -23,5 +23,11 @@
         <property name="maxUploadSize" value="104857600"/>
     </bean>
 
+    <bean id="beanNameResolver" class="org.springframework.web.servlet.view.BeanNameViewResolver" p:order="0" />
+    <bean id="jsonView" class="org.springframework.web.servlet.view.json.MappingJackson2JsonView">
+        <property name="contentType" value="application/json;charset=UTF-8"></property>
+    </bean>
+
+
 
 </beans>

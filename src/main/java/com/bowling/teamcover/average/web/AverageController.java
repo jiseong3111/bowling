@@ -5,6 +5,7 @@ import com.bowling.teamcover.average.vo.AverageVo;
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.DataFormatter;
+import org.apache.poi.ss.usermodel.FormulaEvaluator;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
@@ -56,6 +57,8 @@ public class AverageController {
 
             XSSFWorkbook workbook = new XSSFWorkbook(file);
 
+            FormulaEvaluator evaluator = workbook.getCreationHelper().createFormulaEvaluator();
+
             int rowNo = 0;
             int cellIndex = 0;
 
@@ -72,13 +75,18 @@ public class AverageController {
                     int cells = row.getPhysicalNumberOfCells(); // 해당 Row에 사용자가 입력한 셀의 수를 가져온다
                     for (cellIndex = 0; cellIndex <= cells; cellIndex++) {
                         XSSFCell cell = row.getCell(cellIndex); // 셀의 값을 가져온다
+
+//                        System.out.println("변환후: " + evaluator.evaluateInCell(cell));
                         String value = "";
+
                         if (cell == null) { // 빈 셀 체크
                             continue;
                         } else {
                             switch (cell.getCellType()) {
                                 case XSSFCell.CELL_TYPE_FORMULA:
                                     value = cell.getCellFormula();
+                                    cell.setCellType(Cell.CELL_TYPE_STRING);
+                                    value = String.valueOf(evaluator.evaluateInCell(cell));
                                     break;
                                 case XSSFCell.CELL_TYPE_NUMERIC:
                                     // 숫자일 경우, String형으로 변경하여 값을 읽는다.
@@ -135,6 +143,28 @@ public class AverageController {
             }
             //디비 삽입 필요
             int cnt = averageService.insertAvgList(excelList);
+
+            List<AverageVo> ttList = averageService.selectTtAvgLst();
+
+            int gmCnt = 0;
+            int ttScr = 0;
+            int avg = 0;
+            for(int i=0; i<excelList.size(); i++){
+                gmCnt += Integer.valueOf(excelList.get(i).getGmCnt());
+                ttScr += Integer.valueOf(excelList.get(i).getTtScr());
+            }
+            avg = ttScr/gmCnt;
+
+            Map data = new HashMap();
+            data.put("gmCnt",gmCnt);
+            data.put("ttScr",ttScr);
+            data.put("avrgScr",avg);
+            data.put("cuno",excelList.get(0).getCuno());
+
+            //처음에는 총내역에 데이터가 없음
+            if(ttList.size() == 0){
+                averageService.insertTtAvgList(data);
+            }
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -231,4 +261,6 @@ public class AverageController {
 
         return resultMap;
     }*/
+
+
 }

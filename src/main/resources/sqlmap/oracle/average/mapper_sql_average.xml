@@ -22,4 +22,20 @@
         </foreach>
     </insert>
 
+    <select id="selectTtAvgLst" resultType="com.bowling.teamcover.average.vo.AverageVo">
+        SELECT *
+        FROM TB_TT_AVG_LST
+    </select>
+
+    <insert id="insertTtAvgList" parameterType="Map">
+        INSERT INTO TB_TT_AVG_LST (MBNO,CUNO,TT_GM_CNT,TT_SCR,AVRG_SCR)
+        VALUES (
+                    #{mbno},
+                    #{cuno},
+                    #{gmCnt},
+                    #{ttScr},
+                    #{avrgScr}
+               )
+    </insert>
+
 </mapper>

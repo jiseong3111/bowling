@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.bowling.teamcover.member.service.dao.MemberDao">
+
+    <select id="selectCuList" resultType="com.bowling.teamcover.member.vo.MemberVo">
+        SELECT *
+        FROM TB_CU_MSTB
+    </select>
+
+    <insert id="insertMember" parameterType="com.bowling.teamcover.member.vo.MemberVo">
+        INSERT INTO TB_MBR_MSTB (MBNO,CUNO,MBR_STAT_CD,MBR_NM,TNO,EMAD)
+                        VALUES (
+                                   #{mbno},
+                                   #{cuno},
+                                   '10',
+                                   #{mbrNm},
+                                   REPLACE(#{tno},'-'),
+                                   #{emad}
+                               )
+
+    </insert>
+
+    <select id="selectMemberList" resultType="com.bowling.teamcover.member.vo.MemberVo">
+        SELECT *
+        FROM (SELECT ROWNUM RANK, Z.*
+              FROM (SELECT B.CU_NM
+                         , A.MBNO
+                         , A.MBR_NM
+                         , NVL(C.TT_GM_CNT, '0') AS TT_GM_CNT
+                         , NVL(C.TT_SCR, '0')    AS TT_SCR
+                         , NVL(C.AVRG_SCR, '0')  AS AVRG_SCR
+                    FROM TB_MBR_MSTB A
+                             INNER JOIN TB_CU_MSTB B ON A.CUNO = B.CUNO
+                             LEFT JOIN TB_TT_AVG_LST C ON A.MBNO = C.MBNO) Z
+              ORDER BY Z.AVRG_SCR DESC)
+        ORDER BY MBNO
+    </select>
+
+
+</mapper>

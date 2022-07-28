@@ -65,18 +65,17 @@
 
             <nav id="site-nav" role="navigation">
                 <div class="col">
+                    <h4>회원관리</h4>
+                    <ul>
+                        <li><a href="<c:url value='/member/memberList.do'/>">회원 등록</a></li>
+                    </ul>
+                </div>
+                <div class="col">
                     <h4>에버리지</h4>
                     <ul>
                         <li><a href="<c:url value='/average/averageList.do'/>">에버 관리</a></li>
                         <li><a href="#">팀 전체 에버</a></li>
 
-                    </ul>
-                </div>
-                <div class="col">
-                    <h4>Results</h4>
-                    <ul>
-                        <li><a href="#">Case Studies</a></li>
-                        <li><a href="#">Client Partners</a></li>
                     </ul>
                 </div>
                 <div class="col">

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -19,5 +20,15 @@ public class AverageServiceImpl implements AverageService {
     @Override
     public int insertAvgList(ArrayList<AverageVo> excelList) throws Exception {
         return averageDao.insertAvgList(excelList);
+    }
+
+    @Override
+    public List<AverageVo> selectTtAvgLst() throws Exception {
+        return averageDao.selectTtAvgLst();
+    }
+
+    @Override
+    public void insertTtAvgList(Map data) throws Exception {
+        averageDao.insertTtAvgList(data);
     }
 }
