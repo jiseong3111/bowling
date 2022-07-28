@@ -1,8 +1,11 @@
 package com.bowling.teamcover.average.service;
 
 
+import com.bowling.teamcover.average.vo.AverageVo;
+
+import java.util.ArrayList;
 import java.util.Map;
 
 public interface AverageService {
-    Map selectTest()throws Exception;
+    public int insertAvgList(ArrayList<AverageVo> excelList)throws Exception;
 }

@@ -3,8 +3,23 @@
 
 <mapper namespace="com.bowling.teamcover.average.service.dao.AverageDao">
 
-    <select id="selectTest" resultType="Map">
-        SELECT * FROM BOARD
-    </select>
+    <!-- 엑셀업로드 시 insert -->
+    <insert id="insertAvgList" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="DECLARE BEGIN" close="; END;" separator=";">
+            INSERT INTO TB_AVG_LST (CUNO,MBNO,GM_CNT,TT_SCR,F_GAME,S_GAME,T_GAME,FF_GAME,RANK,AVRG_SCR)
+                            VALUES (
+                                    #{item.cuno},
+                                    #{item.mbno},
+                                    #{item.gmCnt},
+                                    #{item.ttScr},
+                                    #{item.fGame},
+                                    #{item.sGame},
+                                    #{item.tGame},
+                                    #{item.ffGame},
+                                    #{item.rank},
+                                    #{item.avrgScr}
+                                   )
+        </foreach>
+    </insert>
 
 </mapper>

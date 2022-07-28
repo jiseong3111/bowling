@@ -99,7 +99,7 @@ public class AverageController {
                         }
 
                         if (cellIndex == 0) {
-                            vo.setRnum(value);
+                            vo.setMbno(value);
                         } else if (cellIndex == 1) {
                             vo.setCuno(value);
                         } else if (cellIndex == 2) {
@@ -107,27 +107,35 @@ public class AverageController {
                         } else if (cellIndex == 3) {
                             vo.setTno(value);
                         } else if (cellIndex == 4) {
-                            vo.setMbno(value);
-                        } else if (cellIndex == 5) {
-                            vo.setGmCnt(value);
+                            vo.setMbrNm(value);
                         } else if (cellIndex == 6) {
-                            vo.setTtScr(value);
+                            vo.setGmCnt(value);
                         } else if (cellIndex == 7) {
-                            vo.setLestScr(value);
+                            vo.setfGame(value);
                         } else if (cellIndex == 8) {
-                            vo.setSprmScr(value);
+                            vo.setsGame(value);
                         } else if (cellIndex == 9) {
+                            vo.settGame(value);
+                        } else if (cellIndex == 10) {
+                            vo.setTtScr(value);
+                        } else if (cellIndex == 11) {
+                            vo.setAvrgScr(value);
+                        }else if (cellIndex == 12) {
+                            vo.setRank(value);
+                        } else if (cellIndex == 13) {
+                            // 1회차 일 경우 회차를 자름
+                            value = value.substring(0,1);
+                            vo.setFxprBfTn(value);
+                        } else if (cellIndex == 14) {
                             vo.setFxprBfdt(value);
                         }
                     }
-                    vo.setAvrgScr(String.valueOf(Integer.valueOf(vo.getTtScr()) / Integer.valueOf(vo.getGmCnt())));
-                    System.out.println("vo ::" + vo.toString());
                     excelList.add(vo);
                 }
             }
             //디비 삽입 필요
-            Map cnt = averageService.selectTest();
-            System.out.println(cnt.size());
+            int cnt = averageService.insertAvgList(excelList);
+
         } catch (Exception e) {
             e.printStackTrace();
         }

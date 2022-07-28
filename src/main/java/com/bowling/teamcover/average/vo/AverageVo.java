@@ -8,6 +8,15 @@ public class AverageVo {
     private String fxprBfdt;
     private String gmCnt;
     private String ttScr;
+
+    public String getAvrgScr() {
+        return avrgScr;
+    }
+
+    public void setAvrgScr(String avrgScr) {
+        this.avrgScr = avrgScr;
+    }
+
     private String avrgScr;
     private String sprmScr;
     private String lestScr;
@@ -15,6 +24,106 @@ public class AverageVo {
     private String tno;
 
     private String rnum;
+
+    private String mbrNm;
+
+    private String fGame;
+
+    private String sGame;
+
+    private String tGame;
+
+    private String fxprBfTn;
+
+    private String rcpd;
+
+    private String rcptMcnt;
+
+    private String nextDuesMm;
+
+    private String ffGame;
+
+    private String rank;
+
+    public String getRank() {
+        return rank;
+    }
+
+    public void setRank(String rank) {
+        this.rank = rank;
+    }
+
+    public String getFfGame() {
+        return ffGame;
+    }
+
+    public void setFfGame(String ffGame) {
+        this.ffGame = ffGame;
+    }
+
+    public String getFxprBfTn() {
+        return fxprBfTn;
+    }
+
+    public void setFxprBfTn(String fxprBfTn) {
+        this.fxprBfTn = fxprBfTn;
+    }
+
+    public String getRcpd() {
+        return rcpd;
+    }
+
+    public void setRcpd(String rcpd) {
+        this.rcpd = rcpd;
+    }
+
+    public String getRcptMcnt() {
+        return rcptMcnt;
+    }
+
+    public void setRcptMcnt(String rcptMcnt) {
+        this.rcptMcnt = rcptMcnt;
+    }
+
+    public String getNextDuesMm() {
+        return nextDuesMm;
+    }
+
+    public void setNextDuesMm(String nextDuesMm) {
+        this.nextDuesMm = nextDuesMm;
+    }
+
+    public String getfGame() {
+        return fGame;
+    }
+
+    public void setfGame(String fGame) {
+        this.fGame = fGame;
+    }
+
+    public String getsGame() {
+        return sGame;
+    }
+
+    public void setsGame(String sGame) {
+        this.sGame = sGame;
+    }
+
+    public String gettGame() {
+        return tGame;
+    }
+
+    public void settGame(String tGame) {
+        this.tGame = tGame;
+    }
+
+    public String getMbrNm() {
+        return mbrNm;
+    }
+
+    public void setMbrNm(String mbrNm) {
+        this.mbrNm = mbrNm;
+    }
 
     public String getRnum() {
         return rnum;
@@ -64,13 +173,6 @@ public class AverageVo {
         this.ttScr = ttScr;
     }
 
-    public String getAvrgScr() {
-        return avrgScr;
-    }
-
-    public void setAvrgScr(String avrgScr) {
-        this.avrgScr = avrgScr;
-    }
 
     public String getSprmScr() {
         return sprmScr;
