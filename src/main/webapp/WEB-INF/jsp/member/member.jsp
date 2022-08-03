@@ -110,7 +110,6 @@
                                 <col style="width: 10%" />
                                 <col style="width: 10%" />
                                 <col style="width: 10%" />
-                                <col style="width: 10%" />
                             </colgroup>
                             <thead>
                             <tr>
@@ -120,7 +119,6 @@
                                 <th scope="col" class="c-table__col">게임수</th>
                                 <th scope="col" class="c-table__col">총점수</th>
                                 <th scope="col" class="c-table__col">평균에버</th>
-                                <th scope="col" class="c-table__col">순위</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -139,7 +137,6 @@
                                             <td class="c-table__data"><c:out value="${result.ttGmCnt}" /></td>
                                             <td class="c-table__data"><c:out value="${result.ttScr}" /></td>
                                             <td class="c-table__data"><c:out value="${result.avrgScr}" /></td>
-                                            <td class="c-table__data"><c:out value="${result.rank}" /></td>
                                         </tr>
                                     </c:forEach>
                                 </c:otherwise>

@@ -21,11 +21,22 @@
 
     </insert>
 
+    <insert id="insertTtAvgLst" parameterType="com.bowling.teamcover.member.vo.MemberVo">
+        INSERT INTO TB_TT_AVG_LST (CUNO,MBNO,TT_GM_CNT,TT_SCR,AVRG_SCR)
+                        VALUES (
+                                    #{cuno},
+                                    #{mbno},
+                                    '0',
+                                    '0',
+                                    '0'
+                               )
+    </insert>
+
     <select id="selectMemberList" resultType="com.bowling.teamcover.member.vo.MemberVo">
         SELECT *
-        FROM (SELECT ROWNUM RANK, Z.*
+        FROM (SELECT Z.*
               FROM (SELECT B.CU_NM
-                         , A.MBNO
+                         , TO_NUMBER(A.MBNO) MBNO
                          , A.MBR_NM
                          , NVL(C.TT_GM_CNT, '0') AS TT_GM_CNT
                          , NVL(C.TT_SCR, '0')    AS TT_SCR
@@ -33,9 +44,8 @@
                     FROM TB_MBR_MSTB A
                              INNER JOIN TB_CU_MSTB B ON A.CUNO = B.CUNO
                              LEFT JOIN TB_TT_AVG_LST C ON A.MBNO = C.MBNO) Z
-              ORDER BY Z.AVRG_SCR DESC)
+              )
         ORDER BY MBNO
     </select>
-
 
 </mapper>

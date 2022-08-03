@@ -1,6 +1,8 @@
 package com.bowling.teamcover.average.vo;
 
-public class AverageVo {
+import com.bowling.teamcover.cmm.vo.PagingVO;
+
+public class AverageVo extends PagingVO {
     private String mbno;
     private String cuno;
 
@@ -8,6 +10,16 @@ public class AverageVo {
     private String fxprBfdt;
     private String gmCnt;
     private String ttScr;
+
+    private String ttGmCnt;
+
+    public String getTtGmCnt() {
+        return ttGmCnt;
+    }
+
+    public void setTtGmCnt(String ttGmCnt) {
+        this.ttGmCnt = ttGmCnt;
+    }
 
     public String getAvrgScr() {
         return avrgScr;

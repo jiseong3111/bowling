@@ -1,6 +1,8 @@
 package com.bowling.teamcover.member.vo;
 
-public class MemberVo {
+import com.bowling.teamcover.cmm.vo.PagingVO;
+
+public class MemberVo extends PagingVO {
     private String mbno;
 
     private String cuno;

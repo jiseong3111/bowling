@@ -31,4 +31,29 @@ public class AverageServiceImpl implements AverageService {
     public void insertTtAvgList(Map data) throws Exception {
         averageDao.insertTtAvgList(data);
     }
+
+    @Override
+    public int updateTtAvgLst(Map data) throws Exception {
+        return averageDao.updateTtAvgLst(data);
+    }
+
+    @Override
+    public List<AverageVo> selectAvgList(AverageVo averageVo) throws Exception {
+        return averageDao.selectAvgList(averageVo);
+    }
+
+    @Override
+    public void insertFxprBfdt(Map fxprData) throws Exception {
+        averageDao.insertFxprBfdt(fxprData);
+    }
+
+    @Override
+    public List<AverageVo> selectMemberOneAvgList(AverageVo averageVo) throws Exception {
+        return averageDao.selectMemberOneAvgList(averageVo);
+    }
+
+    @Override
+    public List<Map> selectFxprBfTnList(AverageVo averageVo) throws Exception {
+        return averageDao.selectFxprBfTnList(averageVo);
+    }
 }

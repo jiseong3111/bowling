@@ -11,4 +11,6 @@ public interface MemberService {
     int insertMember(MemberVo memberVo)throws Exception;
 
     List<MemberVo> selectMemberList()throws Exception;
+
+    void insertTtAvgLst(MemberVo memberVo)throws Exception;
 }

@@ -3,10 +3,60 @@
 
 <mapper namespace="com.bowling.teamcover.average.service.dao.AverageDao">
 
+    <select id="selectAvgList" parameterType="com.bowling.teamcover.average.vo.AverageVo" resultType="com.bowling.teamcover.average.vo.AverageVo">
+        SELECT ROWNUM RANK, Z.*
+        FROM (
+                 SELECT B.MBR_NM
+                      ,C.CU_NM
+                      ,A.TT_GM_CNT
+                      ,A.TT_SCR
+                      ,A.AVRG_SCR
+                      ,B.MBNO
+                 FROM TB_TT_AVG_LST A
+                          INNER JOIN TB_MBR_MSTB B ON A.MBNO = B.MBNO
+                          INNER JOIN TB_CU_MSTB C ON B.CUNO = C.CUNO
+                WHERE 1=1
+                <if test="searchType != null and searchType != ''">
+                    AND B.MBR_NM = #{searchType}
+                </if>
+                <if test="searchType1 != null and searchType1 != ''">
+                    AND B.MBNO = #{searchType1}
+                </if>
+                 ORDER BY AVRG_SCR DESC
+             ) Z
+    </select>
+
+    <select id="selectMemberOneAvgList" parameterType="com.bowling.teamcover.average.vo.AverageVo" resultType="com.bowling.teamcover.average.vo.AverageVo">
+        SELECT B.MBR_NM
+             ,A.F_GAME
+             ,A.S_GAME
+             ,A.T_GAME
+             ,A.GM_CNT
+             ,A.TT_SCR
+             ,A.AVRG_SCR
+             ,A.FXPR_BF_TN||'회차' AS FXPR_BF_TN
+             ,C.CU_NM
+             ,B.MBNO
+        FROM TB_AVG_LST A
+                INNER JOIN TB_MBR_MSTB B ON A.MBNO = B.MBNO
+                INNER JOIN TB_CU_MSTB C ON B.CUNO = C.CUNO
+        WHERE A.MBNO = #{mbno}
+    </select>
+
+    <insert id="insertFxprBfdt" parameterType="Map">
+        INSERT INTO TB_FXPR_BFDT (CUNO,FXPR_BF_TN,FXPR_BFDT)
+                        VALUES (
+                                   #{cuno},
+                                   #{fxprBfTn},
+                                   #{fxprBfdt}
+                               )
+
+    </insert>
+
     <!-- 엑셀업로드 시 insert -->
     <insert id="insertAvgList" parameterType="java.util.List">
         <foreach collection="list" item="item" index="index" open="DECLARE BEGIN" close="; END;" separator=";">
-            INSERT INTO TB_AVG_LST (CUNO,MBNO,GM_CNT,TT_SCR,F_GAME,S_GAME,T_GAME,FF_GAME,RANK,AVRG_SCR)
+            INSERT INTO TB_AVG_LST (CUNO,MBNO,GM_CNT,TT_SCR,F_GAME,S_GAME,T_GAME,FF_GAME,RANK,AVRG_SCR,FXPR_BF_TN)
                             VALUES (
                                     #{item.cuno},
                                     #{item.mbno},
@@ -17,7 +67,8 @@
                                     #{item.tGame},
                                     #{item.ffGame},
                                     #{item.rank},
-                                    #{item.avrgScr}
+                                    #{item.avrgScr},
+                                    #{item.fxprBfTn}
                                    )
         </foreach>
     </insert>
@@ -37,5 +88,23 @@
                     #{avrgScr}
                )
     </insert>
+
+    <update id="updateTtAvgLst" parameterType="Map">
+        UPDATE TB_TT_AVG_LST
+        SET
+            TT_GM_CNT = #{gmCnt},
+            TT_SCR = #{ttScr},
+            AVRG_SCR = #{avrgScr}
+        WHERE CUNO = #{cuno}
+          AND MBNO = #{mbno}
+    </update>
+
+    <select id="selectFxprBfTnList" parameterType="com.bowling.teamcover.average.vo.AverageVo" resultType="Map">
+        SELECT A.FXPR_BF_TN||'회차' AS fxprBfTn
+             ,A.FXPR_BFDT AS fxprBfdt
+        FROM TB_FXPR_BFDT A
+                 INNER JOIN TB_AVG_LST B ON A.FXPR_BF_TN = B.FXPR_BF_TN
+        WHERE MBNO = #{mbno}
+    </select>
 
 </mapper>

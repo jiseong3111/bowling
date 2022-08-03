@@ -37,7 +37,11 @@ public class AverageController {
     private AverageService averageService;
 
     @RequestMapping(value = "/average/averageList.do")
-    public String averageList(@ModelAttribute("loginCheck") String loginCheck, Model model) throws Exception {
+    public String averageList(@ModelAttribute AverageVo averageVo, Model model) throws Exception {
+
+        List<AverageVo> resultList = averageService.selectAvgList(averageVo);
+
+        model.addAttribute("resultList",resultList);
 
         return "/average/averageList";
     }
@@ -97,7 +101,7 @@ public class AverageController {
                                     value = cell.getStringCellValue();
                                     break;
                                 case XSSFCell.CELL_TYPE_BLANK:
-                                    //value = cell.getBooleanCellValue()+"";
+                                    value = cell.getBooleanCellValue()+"";
                                     value = " ";
                                     break;
                                 case XSSFCell.CELL_TYPE_ERROR:
@@ -141,31 +145,49 @@ public class AverageController {
                     excelList.add(vo);
                 }
             }
-            //디비 삽입 필요
+
+            //에버리지(TB_AVG_LST) INSERT
             int cnt = averageService.insertAvgList(excelList);
+
+            Map fxprData = new HashMap();
+            fxprData.put("cuno",excelList.get(0).getCuno());
+            fxprData.put("fxprBfTn",excelList.get(0).getFxprBfTn());
+            fxprData.put("fxprBfdt",excelList.get(0).getFxprBfdt());
+            //정기전 일자 INSERT
+            averageService.insertFxprBfdt(fxprData);
+
+            //정기전 현재 회차 -29회차까지 총 합을 구해야함.
+
 
             List<AverageVo> ttList = averageService.selectTtAvgLst();
 
-            int gmCnt = 0;
-            int ttScr = 0;
-            int avg = 0;
-            for(int i=0; i<excelList.size(); i++){
-                gmCnt += Integer.valueOf(excelList.get(i).getGmCnt());
-                ttScr += Integer.valueOf(excelList.get(i).getTtScr());
-            }
-            avg = ttScr/gmCnt;
-
             Map data = new HashMap();
-            data.put("gmCnt",gmCnt);
-            data.put("ttScr",ttScr);
-            data.put("avrgScr",avg);
             data.put("cuno",excelList.get(0).getCuno());
+            for(int i=0; i<ttList.size(); i++){
+                int gmCnt = 0;
+                int ttScr = 0;
+                int avg = 0;
+                //엑셀값과 기존의 총내역테이블에 있는 값을 합쳐서 총내역으로 다시 만들어주는 작업
+                gmCnt += Integer.valueOf(excelList.get(i).getGmCnt());
+                gmCnt += Integer.valueOf(ttList.get(i).getTtGmCnt());
+                ttScr += Integer.valueOf(excelList.get(i).getTtScr());
+                ttScr += Integer.valueOf(ttList.get(i).getTtScr());
+                if(gmCnt != 0) {
+                    avg = ttScr / gmCnt;
+                }
+                //맵에 담아서 update하기 위한 가공
+                data.put("gmCnt",gmCnt);
+                data.put("ttScr",ttScr);
+                data.put("avrgScr",avg);
+                data.put("mbno",ttList.get(i).getMbno());
 
-            //처음에는 총내역에 데이터가 없음
-            if(ttList.size() == 0){
-                averageService.insertTtAvgList(data);
+                if(ttList.size() == excelList.size()){
+                    int uCnt = averageService.updateTtAvgLst(data);
+                }else{
+                    resultMap.addObject("result","notSize");
+                    break;
+                }
             }
-
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -180,7 +202,7 @@ public class AverageController {
     @RequestMapping(value = "/average/sampleDown.do")
     public void sampleDown(HttpServletResponse response, HttpServletRequest request) throws Exception {
         String fileName = "AVERAGE_SAMPLE_EXCEL.xlsx";
-        String saveFilePath = "C:\\TeamCover\\bowling\\src\\main\\web\\sample";
+        String saveFilePath = "C:\\TeamCover\\bowling\\src\\main\\webapp\\sample";
         String contentType = "application/vnd.ms-excel";
         File file = new File(saveFilePath);
         long fileLength = file.length();
@@ -205,6 +227,19 @@ public class AverageController {
         }catch(Exception e){
             e.printStackTrace();
         }
+    }
+
+    @RequestMapping(value = "/average/averageSelectOne.do")
+    public String averageSelectOne(@ModelAttribute AverageVo averageVo, Model model) throws Exception {
+
+        List<AverageVo> resultList = averageService.selectMemberOneAvgList(averageVo);
+
+        List<Map> fxprBfTnList = averageService.selectFxprBfTnList(averageVo);
+
+        model.addAttribute("resultList",resultList);
+        model.addAttribute("fxprBfTnList",fxprBfTnList);
+
+        return "/average/averageListPop";
     }
 
 

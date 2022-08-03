@@ -56,6 +56,7 @@ public class MemberController {
         int cnt = memberService.insertMember(memberVo);
 
         if(cnt >= 1){
+            memberService.insertTtAvgLst(memberVo);
             resultMap.addObject("result", "success");
         }else{
             resultMap.addObject("result", "fail");

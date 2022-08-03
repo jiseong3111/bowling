@@ -1,6 +1,7 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <html>
 <head>
+    <meta charset="UTF-8" />
     <title>에버 관리</title>
     <jsp:include page="/WEB-INF/jsp/cmm/menu.jsp"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/statics/css/index.css" type="text/css" />
@@ -8,6 +9,26 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/statics/css/styles.css" type="text/css" />
 
     <script>
+        var popupWidth = 990;
+        var popupHeight = 940;
+        // 만들 팝업창 width 크기의 1/2 만큼 보정값으로 빼주었음
+        var popupX = (window.screen.width / 2) - (popupWidth / 2);
+
+        // 만들 팝업창 height 크기의 1/2 만큼 보정값으로 빼주었음
+        var popupY= (window.screen.height / 2) - (popupHeight / 2);
+
+        //수정 팝업
+        function goView(mbno) {
+            var popup= window.open("<c:url value='/average/averageSelectOne.do?mbno='/>"+mbno,"averageSelectOne", "toolbar=no,location=no,directories=no,status=no,menubar=no,resizable=yes,fullscreen=no,scrollbars=yes,top="+popupY+",left="+popupX+",width="+popupWidth+",height="+popupHeight+",screenY=100");
+            popup.focus();
+        }
+
+        function goSearch() {
+            $("#currPage").val("1");
+            document.mainForm.action = "<c:url value='/average/averageList.do'/>";
+            document.mainForm.submit();
+        }
+
         function goSampleFile(){
             var reqUrl = "<c:url value='/average/sampleDown.do'/>";
             callAjaxException(reqUrl)
@@ -36,6 +57,11 @@
                         alert("다운로드가 완료 되었습니다.\n"+"경로 : "+data.address);
                     } else if(data.result == "fail"){
                         alert("오류발생#####");
+                    } else if(data.result == "notSize"){
+                        alert("엑셀에 회원 전체의 명단을 입력해 주세요.");
+                    } else if(data.result == ""){
+                        alert("파일 업로드중입니다.");
+                        location.reload();
                     }
 
                 },
@@ -46,8 +72,8 @@
         }
     </script>
 </head>
-<body>
-<div class="l-page">
+<body >
+<div class="l-page" style="margin-top: 200px;">
     <form id="mainForm" name="mainForm" method="post">
         <input type="hidden" id="currPage" name="currPage" value="${search.currPage}" />
         <input type="hidden" id="iCnt" name="iCnt" value="0" />
@@ -55,7 +81,6 @@
         <input type="hidden" id="searchPageUnit" name="searchPageUnit" value="<c:out value='${search.searchPageUnit}'/>"/>
         <input type="hidden" name="searchType_org" id="searchType_org" value="${search.searchType}"/>
         <input type="hidden" name="searchText_org" id="searchText_org" value="${search.searchText}"/>
-        <input type="hidden" name="coNo" id="coNo" value="${search.coNo}"/>
 
         <div class="l-page__contents">
             <div class="l-tools">
@@ -75,15 +100,15 @@
                                     <div class="c-group__key">회원명 : </div>
                                     <div class="c-group__value">
                                         <div class="c-forms">
-                                            <label for="searchText" class="is-hidden">검색키워드</label>
-                                            <input type="text" id="searchText" class="c-forms__text"  name="searchText" maxlength="50" value="${search.searchText}" <c:if test="${search.searchType1 eq '' or search.searchType1 eq null}"></c:if>/>
+                                            <label for="searchType" class="is-hidden">검색키워드</label>
+                                            <input type="text" id="searchType" class="c-forms__text"  name="searchType" maxlength="50" value="${search.searchType}" <c:if test="${search.searchType eq '' or search.searchType eq null}"></c:if>/>
                                         </div>
                                     </div>
                                     <div class="c-group__key" style="padding-left: 20px;">회원번호 : </div>
                                     <div class="c-group__value">
                                         <div class="c-forms">
-                                            <label for="searchText" class="is-hidden">검색키워드</label>
-                                            <input type="text" id="searchText" class="c-forms__text"  name="searchText" maxlength="50" value="${search.searchText}" <c:if test="${search.searchType1 eq '' or search.searchType1 eq null}"></c:if>/>
+                                            <label for="searchType1" class="is-hidden">검색키워드</label>
+                                            <input type="text" id="searchType1" class="c-forms__text"  name="searchType1" maxlength="50" value="${search.searchType1}" <c:if test="${search.searchType1 eq '' or search.searchType1 eq null}"></c:if>/>
                                         </div>
                                     </div>
                                 </div>
@@ -155,22 +180,20 @@
                     <div class="c-table">
                         <table>
                             <colgroup>
-                                <col style="width: 10%" />
-                                <col style="width: 10%" />
-                                <col style="width: 10%" />
-                                <col style="width: 10%" />
-                                <col style="width: 10%" />
-                                <col style="width: 10%" />
-                                <col style="width: 10%" />
+                                <col style="width: 13%" />
+                                <col style="width: 5%" />
+                                <col style="width: 3%" />
+                                <col style="width: 3%" />
+                                <col style="width: 5%" />
+                                <col style="width: 5%" />
                             </colgroup>
                             <thead>
                             <tr>
                                 <th scope="col" class="c-table__col">클럽명</th>
                                 <th scope="col" class="c-table__col">회원명</th>
+                                <th scope="col" class="c-table__col">순위</th>
                                 <th scope="col" class="c-table__col">게임수</th>
                                 <th scope="col" class="c-table__col">총점수</th>
-                                <th scope="col" class="c-table__col">최고점수</th>
-                                <th scope="col" class="c-table__col">최저점수</th>
                                 <th scope="col" class="c-table__col">평균에버</th>
                             </tr>
                             </thead>
@@ -184,13 +207,12 @@
                                 <c:otherwise>
                                     <c:forEach var="result" items="${resultList}" varStatus="status">
                                         <tr>
-                                            <td class="c-table__data"><c:out value="${result.coNo}" /></td>
-                                            <td class="c-table__data"><c:out value="${result.coClsfCd}" /></td>
-                                            <td class="c-table__data"><a href="javascript:goView('${result.coNo}')" class="c-link c-link--colored"><c:out value="${result.coNm}" escapeXml="false"/></a></td>
-                                            <td class="c-table__data"><c:out value="${result.coIdfCd}" /></td>
-                                            <td class="c-table__data"><c:out value="${result.fstRegDttm}" /></td>
-                                            <td class="c-table__data"><c:out value="${result.fstRegDttm}" /></td>
-                                            <td class="c-table__data"><c:out value="${result.fstRegDttm}" /></td>
+                                            <td class="c-table__data"><c:out value="${result.cunm}" /></td>
+                                            <td class="c-table__data"><a href="#" onclick="goView('${result.mbno}'); return false;" class="c-link c-link--colored"><c:out value="${result.mbrNm}" /></a></td>
+                                            <td class="c-table__data"><c:out value="${result.rank}" /></td>
+                                            <td class="c-table__data"><c:out value="${result.ttGmCnt}" /></td>
+                                            <td class="c-table__data"><c:out value="${result.ttScr}" /></td>
+                                            <td class="c-table__data"><c:out value="${result.avrgScr}" /></td>
                                         </tr>
                                     </c:forEach>
                                 </c:otherwise>

@@ -28,4 +28,9 @@ public class MemberServiceImpl implements MemberService {
     public List<MemberVo> selectMemberList() throws Exception {
         return memberDao.selectMemberList();
     }
+
+    @Override
+    public void insertTtAvgLst(MemberVo memberVo) throws Exception {
+        memberDao.insertTtAvgLst(memberVo);
+    }
 }
