@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/statics/css/styles.css" type="text/css" />
 
     <script>
+        1
         var popupWidth = 990;
         var popupHeight = 940;
         // 만들 팝업창 width 크기의 1/2 만큼 보정값으로 빼주었음
