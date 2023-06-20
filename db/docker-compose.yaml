@@ -1,11 +1,14 @@
 version: "3.3"
+volumes:
+  oracle_data: {}
 services:
-  oracle: # username : system, password : oracle
-    container_name: bowling-db
-    image: oraclelinux:9-slim
+  bowling-db: # username : system, password : oracle
+    image: jaspeen/oracle-xe-11g
+    environment:
+      - ORACLE_SID=bowling
+      - ORACLE_PDB=wonjin
+      - ORACLE_PWD=1234
     ports:
       - "1521:1521"
     volumes:
       - oracle_data:/u01/app/oracle
-volumes:
-  oracle_data: {}
