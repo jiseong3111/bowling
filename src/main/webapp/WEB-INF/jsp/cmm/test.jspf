@@ -4,5 +4,8 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/statics/css/styles.css" type="text/css" />
+<link rel="stylesheet" type="text/css" href="<c:url value='/statics/css/admin.css?ver='/><fmt:formatDate value='${now}' pattern='yyyyMMddHHmmss'/>"/>
+<link rel="stylesheet" type="text/css" href="<c:url value='/statics/css/customAdmin.css?ver='/><fmt:formatDate value='${now}' pattern='yyyyMMddHHmmss'/>"/>
+<link rel="stylesheet" type="text/css" href="<c:url value='/statics/css/font.css'/>" />
 
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>

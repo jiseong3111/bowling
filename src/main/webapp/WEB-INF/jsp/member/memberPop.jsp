@@ -160,7 +160,7 @@
                             </div>
                         </td>
                     </tr>
-                    <tr>
+                    <%--<tr>
                         <th scope="row" class="c-table__row"><span class='c-require'>*</span> 사용여부</th>
                         <td class="c-table__data is-left" >
                             <div class="c-forms">
@@ -173,7 +173,7 @@
                                 </select>
                             </div>
                         </td>
-                    </tr>
+                    </tr>--%>
                     </tbody>
                 </table>
             </div>

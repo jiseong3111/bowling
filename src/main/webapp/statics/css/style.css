@@ -1,0 +1,345 @@
+/* common */
+html, body {height:100%; overflow: hidden;} 
+body { -ms-overflow-style: none; margin:0px; font-family: 'Noto Sans Korean', Dotum, sans-serif; letter-spacing:-0.03em; color:#202124;}
+::-webkit-scrollbar {display: none;}
+.skip {position:absolute; overflow:hidden; height:0; width:0; font-size:0; visibility:hidden;}
+a, a:visited, a:link, a:hover { text-decoration:none; box-sizing: border-box;}
+ul, li,dl,dt {margin:0px; padding:0px; list-style-type: none;}
+button {background:none; border:0px; padding:0px; margin:0px; cursor:pointer; box-sizing: border-box; font-family: 'Noto Sans Korean', Dotum, sans-serif; letter-spacing:-0.05em}
+input {border:1px solid #D7D7D7; box-sizing: border-box; vertical-align: middle; text-indent:10px; font-family: 'Noto Sans Korean', Dotum, sans-serif; -webkit-appearance: none; -webkit-border-radius: 0;}
+input.ac {text-indent:0;}
+input.ar {padding-right:10px; text-indent: 0;}
+label {vertical-align: middle;}
+input[type="radio"] {margin-top:0;}
+input[type="button"] {text-indent:0;}
+select {color:#666; font-family: 'Noto Sans Korean', Dotum, sans-serif; letter-spacing:-0.05em ; border:1px solid #D7D7D7; box-sizing: border-box; vertical-align: middle; background: url(../img/common/selectArrow.svg) no-repeat right center #fff; appearance: none; -webkit-appearance: none; -webkit-border-radius: 0;}
+select::-ms-expand { display: none;}
+textarea {height:120px; width:100%; border:1px solid #D7D8D9; font-size:14px; padding:20px; box-sizing:border-box; font-family: 'Noto Sans Korean', Dotum, sans-serif;}
+/* common */
+
+.text_red {color:#FF001E;}
+/*ul list*/
+.ulList {overflow: hidden;}
+.ulList > li {position:relative; color:#202124; font-size: 15px;padding-left:15px; margin-top:5px; word-break: keep-all;}
+.ulList > li:first-child {margin-top:0;}
+.ulList > li:before {display:inline-block; content:''; width:3px; height:3px; background-color:#333; border-radius: 50%; margin:-6px 10px 0 -13px; vertical-align: middle;}
+.ulList > li .numberList > li {font-size:14px; margin-top:8px;}
+.ulList > li .numberList > li:first-child {margin-top:8px;}
+
+.numberList {overflow: hidden;}
+.numberList > li {position:relative; font-size: 15px; padding-left:20px; margin-top:8px;}
+.numberList > li:first-child {margin-top:0;}
+.numberList > li:first-child:before {display:block; content:'1.';  font-size:15px; position:absolute; left:0; top:0;}
+.numberList > li:nth-child(2):before {display:block; content:'2.';  font-size:15px; position:absolute; left:0; top:0;}
+.numberList > li:nth-child(3):before {display:block; content:'3.';  font-size:15px; position:absolute; left:0; top:0;}
+.numberList > li:nth-child(4):before {display:block; content:'4.';  font-size:15px; position:absolute; left:0; top:0;}
+.numberList > li:nth-child(5):before {display:block; content:'5.';  font-size:15px; position:absolute; left:0; top:0;}
+.numberList > li:nth-child(6):before {display:block; content:'6.';  font-size:15px; position:absolute; left:0; top:0;}
+.numberList > li:nth-child(7):before {display:block; content:'7.';  font-size:15px; position:absolute; left:0; top:0;}
+.numberList > li:nth-child(8):before {display:block; content:'8.';  font-size:15px; position:absolute; left:0; top:0;}
+.numberList > li:nth-child(9):before {display:block; content:'9.';  font-size:15px; position:absolute; left:0; top:0;}
+.numberList > li:nth-child(10):before {display:block; content:'10.'; font-size:15px; position:absolute; left:0; top:0;}
+.numberList > li .ulList > li {font-size:14px; margin-top:8px;}
+.numberList > li .ulList > li:first-child {margin-top:8px;}
+
+.numberList > li > .numberList {margin-bottom:12px;}
+.numberList > li > .numberList >li:first-child {margin-top:8px;}
+.numberList > li > .numberList >li:before {font-size:14px;}
+.numberList > li > .numberList >li {font-size:14px;}
+
+
+/* check box style */
+input[type="checkbox"] { position: absolute; left:-999px; opacity: 0; text-indent: 0;}
+input[type="checkbox"] + label { position: relative; cursor: pointer; padding: 0; vertical-align: middle; }
+input[type="checkbox"] + label:before {content: ""; margin-right: 12px; display: inline-block ;vertical-align: middle; width: 20px; height: 20px; background: #fff; border:1px solid #d7d7d7;border-radius:2px;}
+input[type="checkbox"]:checked + label:before { background: #000; border:1px solid #000;}
+input[type="checkbox"]:checked + label:after { content: ""; position: absolute; left: 5px; top: 55%; background: #fff; width: 2px; height: 2px; box-shadow: 2px 0 0 #fff, 4px 0 0 #fff, 4px -2px 0 #fff, 4px -4px 0 #fff, 4px -6px 0 #fff, 4px -8px 0 white; transform: rotate(37deg);}
+input[type="checkbox"]:disabled + label { color: #b8b8b8; cursor: default;}
+input[type="checkbox"]:disabled + label:before { background: #ddd;}
+
+
+/* layerpopup */
+
+.layerpopup {position: fixed; z-index: 1000; top: 0px; bottom: 0px; left: 0px; right: 0px; background: rgba(0, 0, 0, 0.7); transform: scale(0); opacity: 0; transition: opacity 0.6s ease;}
+.layerpopup.on {transform: scale(1); opacity: 1;}
+  .layerScroll {height:100%;}
+    .layerpopupIn {overflow:hidden;margin:50px auto; border-radius: 10px;}
+      .layerpopupHead {padding:20px 0 0;  background-color:#fff; font-size:24px; color:#000; position:relative; border-top-left-radius: 10px; border-top-right-radius: 10px;}
+        .layerpopupHeadIn {margin:0 30px; border-bottom:3px solid #F5F5F5}
+         .layerpopupHeadIn a {position:absolute; right:32px; top: 19px; font-size:30px; color:#8888;}
+        .LayerPopupSubText {font-size:13px;}
+      .layerpopupCon { background-color:#fff;padding:20px 30px 20px; overflow-y: auto; box-sizing: border-box;}
+      .layerpopupCon.only {border-bottom-left-radius: 10px; border-bottom-right-radius: 10px; height:calc(100% - 71px)}
+      .layerpopupBottom { text-align:center; margin:0;  border-bottom-left-radius: 10px; border-bottom-right-radius: 10px; font-size:18px; background-color:#fff;}
+      .layerpopupBottom a {font-size:18px; display:block;padding:15px 0;}
+      .layerpopupBottom .halfBtnBox {overflow: hidden;}
+      .layerpopupBottom .halfBtnBox li {width:50%; float: left; position:relative;}
+      .layerpopupBottom .halfBtnBox li:before {display:block; content:''; width:1px; height:35px; border-left:1px dashed #d7d7d7; position:absolute; top:10px;}
+      .layerpopupBottom .halfBtnBox li:first-child::before {display: none;}
+    .sizeS .layerpopupIn{width:calc(100% - 50px); position:relative; top:50%; margin-top:-90px;}
+    .sizeM .layerpopupIn{width:calc(100% - 30px); height: calc(100% - 50px); }
+
+/* paging */
+.pagingBox {margin:30px 0px; text-align:center;}
+.pagingBox .buBox { padding:0; text-align:center;border:1px solid #D7D7D7; width:30px; height:30px; box-sizing: border-box;}
+.pagingBox .buBox img {width:10px; vertical-align: 2px;}
+.pagingBox .buBox span {font-size:12px;}
+.pagingBox a {padding:0px 10px; height:30px; line-height:28px; color:#888;  font-size:18px; display: inline-block;  vertical-align:middle; transition:all 0.3s ease; 
+  border:1px solid rgba(0,0,0,0); box-sizing: border-box;}
+.pagingBox a:hover {border:1px solid rgba(0,0,0,0.6);}
+.pagingBox strong {padding:0px 10px; height:30px; line-height:30px; color:#004B9C; font-size:18px; display: inline-block; vertical-align:middle;}
+
+/*text*/
+.title {font-weight: 500; font-size:24px; margin:0 0 12px 0;}
+.title2 {font-weight: 500; font-size:20px; margin:0 0 12px 0;}
+.paragraphM {font-size:18px; margin:0 0 24px 0; line-height: 28px; word-break: keep-all;}
+.paragraphM.line:after {display:block; content:''; width:100%; height:1px; background-color:#d7d7d7; margin-top:12px}
+.paragraphM strong {font-weight: 500;}
+.paragraphM .text {font-size:16px; margin:0 0 8px 0; color:#5F6368;}
+
+body { height: 100%;}
+.wrap { height: 100%;}
+
+    /* header */
+    .header {z-index:10; position: fixed; top:0; left:0; right:0; width: 100%; background-color:#fff; border-bottom:1px solid #f1f1f1; box-shadow:0px 1px 10px rgba(0,0,0,0.1);}
+        .headerIn {height:60px; max-width: calc(1200px - 36px); margin:0 auto; position:relative;}
+        .headerIn .logo {width:150px; display: block; position: absolute; left:18px;top: 10px;}
+        .headerIn .logo img {width: 100%;}
+            .headerR {position:absolute; right:18px; top:10px; display:inline-block}
+            .headerR .menuBtn {position:relative;float:right; width:35px; height: 35px;text-align:right; margin-left:4px;}
+            .headerR .menuBtn a {display: block; height: 100%;}
+            .headerR .menuBtn .line {width:15px; height: 2px; display:inline-block; border-radius: 5px; margin:19px 0 0 0;}
+            .headerR .menuBtn .line::before {display:block; content:''; width:25px; height: 2px; position:absolute; top:10px; right: 0;}
+            .headerR .menuBtn .line::after {display:block; content:''; width:25px; height:2px; bottom:5px; right:0; position:absolute;}
+    
+    .qiuckMenuBox.on .qiuckMenuBoxIn {right:0;}
+    .qiuckMenuBox.on .overlay {display: block; z-index: 10; }
+    .qiuckMenuBoxIn {width:85%; position:fixed; top:0; right:-85%; height: 100%;z-index:11; background-color:#fff; transition: all .3s ease;}
+    .overlay {position:fixed; top:0; width:100%; height:100%; background: rgba(0, 0, 0, 0.7); display: none;}
+
+    .qmArrowBox {height: 50px; margin:0 0 24px 0;}
+    .qmArrowBox a {font-size:35px; padding:0 20px; color:#202124;}
+    .qmmyInfo {position: relative; padding:0 16px 24px 20px; border-bottom:1px solid #d7d7d7;}
+    .qmmyInfo .qmmyInfoText {position:relative;margin-left:50px;display:inline-block; font-size:13px; color:#202124; width:calc(100% - 50px);}
+    .qmmyInfo .nick {display:inline-block; max-width:calc(100% - 112px); text-overflow: ellipsis; white-space: nowrap; overflow: hidden; vertical-align: middle;}
+    .qmmyInfo .email {display: block;word-break: break-all;}
+    .qmmyInfo .icon-user {position: absolute; width:40px; height: 40px;display: inline-block; border-radius: 50px; text-align: center; font-size:25px; line-height: 34px;}
+    .qmmyInfo .qmmySetting {display:inline-block; padding:2px 4px;  border-radius:5px; color:#9ba0a7; border:1px solid #d7d7d7; font-weight: 300; margin-left:5px;font-size:12px;}
+
+    .qmList > ul > li {border-top:1px solid #d7d7d7;}
+    .qmList > ul > li:first-child {border-top:none;}
+    .qmList > ul > li > a {padding:24px 20px; font-size:20px; color:#202124;  display: block;}
+    .qmList > ul > li > a .icon {font-size:30px; margin-right:20px;}
+    .qmList > ul > li > a strong {font-weight: 400; vertical-align: top;}
+
+    /* header end */
+
+
+
+
+    .topContent {position: fixed; top:61px; left:0; right:0; background-color:#fff;}
+        .topCIn {max-width:calc(1200px - 36px); margin:0 auto; position: relative; padding:0 18px 0 18px; height: 60px;}
+            .googleAccount {color:#999; font-size:12px; width: 100%; margin:0 auto 24px; text-align: right; border-radius: 30px; padding:24px 0 0 0;}
+            .googleAccountIn {display:inline-block; border-radius: 50px;background-color:#f1f1f1;  padding:5px 10px;box-shadow:0px 1px 10px rgba(0,0,0,0.1);}
+            .googleAccount .icon-user {display:inline-block; vertical-align: middle;width:20px; height:20px; font-size:12px;display: inline-block; border-radius: 50px; text-align: center; color:#fff; line-height:20px;}
+            .topAdvertisement {display:none; height:50px; overflow: hidden; border:1px solid #d7d7d7;text-align: center;}
+
+    .bottomContent {position: fixed; bottom:0px; left:0; right:0; background-color:#fff;}
+        .bottomCIn {position: relative;}
+        .bottomCIn.btn2 button {width:50%; float:left;}
+        .bottomCIn button {width:100%; height:60px;font-size:20px;}
+        .bottomAdvertisementBox {max-width: calc(1200px - 36px); margin:0 auto; display:none;}
+        .bottomAdvertisement {height:50px; overflow: hidden; border:1px solid #d7d7d7;text-align: center; margin:0 0 24px 0;}
+
+
+    .centerContent {margin:144px 18px 0 18px;}
+        .centerCIn {max-width:calc(1200px - 36px); padding:0 0 8px 0;margin:0 auto; position: relative;}
+
+
+/* 상단/ 하단 / 구글 계정 없는 경우 컨텐츠 */
+.wrap.init .centerContent {margin: 85px 18px 0 18px; overflow-y: scroll; height:calc(100% - 61px - 104px);}
+.wrap.init .headerR {display:none;}
+
+/*구글 계정만 생성된 경우 */
+.wrap.top .centerContent {margin: 142px 18px 0 18px; overflow-y: scroll; height:calc(100% - 120px - 84px);}
+
+
+
+/* banner 생성시  */
+.wrap.topbanner .topAdvertisement {display:block;}
+.wrap.topbanner .topCIn {height: 158px;}
+.wrap.topbanner .centerContent {margin: 220px 18px 0 18px; overflow-y: scroll; height:calc(100% - 84px - 61px - 158px);}
+
+.wrap.bottomBanner .bottomCIn {height:136px;}
+.wrap.bottomBanner .bottomAdvertisementBox {display:block;}
+.wrap.bottomBanner .centerContent {overflow-y: scroll; height:calc(100% - 61px - 84px - 160px);}
+
+.wrap.topbanner.bottomBanner .centerContent {overflow-y: scroll; height:calc(100% - 61px - 160px - 158px);}
+
+/* 그외결제 팝업 내용 */
+.etcPaymentList {margin:0 0 24px 0;}
+.etcPaymentList > li {position:relative;margin:12px 0 0 0; height:30px;line-height: 30px; border-top:1px dashed #d7d7d7;}
+.etcPaymentList > li:first-child {margin:0; border:none; padding-top:0;}
+.etcPaymentList > li > a {display:block; font-size:16px; padding:4px 0 4px 0}
+.etcPaymentList > li:first-child a {padding:0 0 4px 0;}
+.etcPaymentList > li > a .icon {position: absolute; right:0; top:10px; font-size:14px; border-radius: 50px; width:20px; height:20px; display:inline-block; text-align: center; line-height: 20px; font-size:12px;}
+.etcPaymentList > li > a > strong {font-weight: 400; color:#5F6368}
+.etcPaymentInfo {font-size:13px; color:#5F6368; border-top:1px solid #eee; padding:12px 0 0 0;}
+
+/* 상품명/결제금액 내용 */
+.productList {}
+.productList li {position: relative;  color:#202124;}
+.productList li span {position: absolute; display:block;}
+.productList li span::before{display:inline-block; content:''; width:3px; height:3px; background-color:#202124; border-radius: 50%; margin:-6px 10px 0 3px; vertical-align: middle;}
+.productList li strong {margin-left:95px; display: block; word-break: break-all;}
+
+/* 결제 성공 */
+.paySTitle {text-align: center; margin:0 0 24px 0; font-weight: 500; font-size:18px;}
+.paySChek {text-align: center; padding:0 0 0 0; margin:0 0 24px 0; border-bottom:1px dashed #d7d7d7;}
+.paySChek span {display: block; width: 50px; height: 50px; font-size:20px;border-radius: 50%; text-align: center;background-color:#ddd; line-height: 50px; color:#fff; margin:0 auto 8px;}
+.paySdetail .paySDTitle {font-size:17px; font-weight: 500; margin:0 0 8px 0;}
+.paySdetail .paySDList li {font-size:15px; margin:12px 0 0 0; padding:0 0 0 3px; position: relative; color:#5F6368;}
+.paySdetail .paySDList li:first-child {margin:0;}
+.paySdetail .paySDList li span{position:absolute;}
+.paySdetail .paySDList li span:before{display:inline-block; content:''; width:3px; height:3px; background-color:#5F6368; border-radius: 50%; margin:-4px 5px 0 3px; vertical-align: middle;}
+.paySdetail .paySDList li strong {font-weight: 400;  text-align:right;margin-left:95px; display: block; word-break: break-all; color:#202124;}
+
+.virtual .paySTitle {margin:0 0 4px 0;}
+.virtual .paySChek {padding:0 0 24px; border-bottom:1px dashed #d7d7d7;}
+.virtual .paySDList {margin:0 0 12px 0;}
+.virtual .info {font-size: 14px; color:#5F6368; padding-left:18px; position:relative; word-break: keep-all; color:#1769e0}
+.virtual .info::before {display: inline-block; content:'※'; position: absolute; left:0;}
+.virtual .paySdetail .paySDList li strong { margin-left:104px;}
+.virtual .paySdetail .paySDList li.date strong {font-weight: 500; color:#1769e0;}
+
+
+/* 공지사항 */
+.noticeBox {position: fixed; top:0;left:0; bottom:0; right:0; z-index: 10;}
+.noticeBox .noticeTitle {background-color:#fff; line-height:60px; height: 60px; border-bottom:1px solid #d8d8d8;}
+.noticeBox .noticeTitle a {font-size:20px; padding:0 18px; color:#202124;} 
+.noticeBox .noticeTitle a strong {font-size:22px; font-weight: 500;}
+.noticeBox .noticeTitle a span {margin-right:5px;}
+.noticeList {height:calc(100% - 60px); background-color:#fff; overflow-y:scroll;}
+.noticeList > ul > li {border-top:1px solid #d7d7d7;}
+.noticeList > ul > li:first-child {border-top:none;}
+.noticeList > ul > li a {padding:10px 18px;display: block; position:relative;}
+.noticeList > ul > li a strong {display:block; font-size:17px; color:#202124; font-weight: 400; min-height: 50px; word-break: keep-all; line-height: 26px;}
+.noticeList > ul > li a span {font-size:12px; color:#5F6368;}
+.noticeList > ul > li.noticeText {padding:12px 18px; line-height: 28px}
+
+/*개인정보 처리방침 */
+.privacyBox {position: fixed; top:0;left:0; bottom:0; right:0; z-index: 10;}
+.privacyBox .privacyTitle {background-color:#fff; line-height:60px; height: 60px; border-bottom:1px solid #d8d8d8;}
+.privacyBox .privacyTitle a {font-size:20px; padding:0 18px; color:#202124;} 
+.privacyBox .privacyTitle a strong {font-size:22px; font-weight: 500;}
+.privacyBox .privacyTitle a span {margin-right:5px;}
+.privacyContent{height:calc(100% - 60px); background-color:#fff; overflow-y:scroll;}
+.privacyContentIn {padding:12px 18px;}
+
+
+.usageHistroyBox {position: fixed; top:0;left:0; bottom:0; right:0; z-index: 10;}
+.usageHistroyBox .uhbTitle {background-color:#fff; line-height:60px; height: 60px; border-bottom:1px solid #d8d8d8;}
+.usageHistroyBox .uhbTitle a {font-size:20px; padding:0 18px; color:#202124;} 
+.usageHistroyBox .uhbTitle a strong {font-size:22px; font-weight: 500;}
+.usageHistroyBox .uhbTitle a span {margin-right:5px;}
+.usageHistroyBox .uhbContent { background-color:#fff; height: 100%;}
+
+.usageHistroyBox .uhbContent .qmmyInfo {padding:20px 16px 24px 20px; border-bottom:1px solid #d7d7d7;}
+.usageHistroyBox .uhbListBox {padding:18px; height: 100%;}
+.usageHistroyBox .uhbListBox .uhbListTitle {margin:12px 0 0 0; font-weight: 500; font-size:18px;}
+.usageHistroyBox .uhbListBox .uhbListInfo {font-size:14px;color:#888; padding:0 0 8px 0;}
+.usageHistroyBox .uhbListBox .uhbList {height: calc(100% - 47px - 130px - 60px); overflow-y: scroll;}
+.usageHistroyBox .uhbListBox .uhbList > li {margin-top:20px; border-top:1px dashed #d7d7d7; padding:12px 0 0 0;}
+.usageHistroyBox .uhbListBox .uhbList > li:first-child {margin-top:10px; border-top:none; padding:0;}
+.usageHistroyBox .uhbListBox .uhbList > li > .paySDList li {font-size:15px; margin:12px 0 0 0; padding:0 0 0 3px; position: relative; color:#5F6368;}
+.usageHistroyBox .uhbListBox .uhbList > li > .paySDList li:first-child {margin:0;}
+.usageHistroyBox .uhbListBox .uhbList > li > .paySDList li span{position:absolute;}
+.usageHistroyBox .uhbListBox .uhbList > li > .paySDList li span:before{display:inline-block; content:''; width:3px; height:3px; background-color:#5F6368; border-radius: 50%; margin:-4px 5px 0 3px; vertical-align: middle;}
+.usageHistroyBox .uhbListBox .uhbList > li > .paySDList li strong { font-size:16px; text-align:right;font-weight: 400; margin-left:95px; display: block; word-break: break-all; color:#202124}
+.usageHistroyBox .uhbListBox .uhbList > li.virtual > .paySDList li strong { margin-left:104px; color:#202124}
+.usageHistroyBox .uhbListBox .uhbList > li > .paySDList li strong.text_red {color:#FF001E;}
+
+
+
+/* 테마 컬러 선택시 
+    blue : #1769e0
+    green : #01875F
+    red : #FF001E
+    black: #000
+*/
+.blue .headerR .menuBtn .line,.blue .headerR .menuBtn .line::before, .blue .headerR .menuBtn .line::after {background-color:#1769e0;}
+.green .headerR .menuBtn .line,.green .headerR .menuBtn .line::before, .green .headerR .menuBtn .line::after {background-color:#01875F;}
+.red .headerR .menuBtn .line,.red .headerR .menuBtn .line::before, .red .headerR .menuBtn .line::after {background-color:#FF001E;}
+.black .headerR .menuBtn .line,.black .headerR .menuBtn .line::before, .black .headerR .menuBtn .line::after {background-color:#000;}
+.blue .bottomContent button {background-color:#1769e0; color:#fff;}
+.green .bottomContent button {background-color:#01875F; color:#fff;}
+.red .bottomContent button {background-color:#FF001E; color:#fff;}
+.black .bottomContent button {background-color:#000; color:#fff;}
+
+.blue  .bottomCIn.btn2 button.other {background-color:#fff; color:#1769e0; border:1px solid #1769e0;}
+.green  .bottomCIn.btn2 button.other {background-color:#fff; color:#01875F; border:1px solid #01875F;}
+.red  .bottomCIn.btn2 button.other {background-color:#fff; color:#FF001E; border:1px solid #FF001E;}
+.black  .bottomCIn.btn2 button.other {background-color:#fff; color:#000; border:1px solid #000;}
+
+.red .googleAccount .icon-user {background-color:#FF001E;}
+.green .googleAccount .icon-user {background-color:#01875F;}
+.blue .googleAccount .icon-user {background-color:#1769e0;}
+.black .googleAccount .icon-user {background-color:#000;}
+
+
+/* checkbox 테마별 색상*/  
+.blue input[type="checkbox"]:checked + label:before { background: #1769e0; border:1px solid #1769e0;}
+.green input[type="checkbox"]:checked + label:before { background: #01875F; border:1px solid #01875F;}
+.red input[type="checkbox"]:checked + label:before { background: #FF001E; border:1px solid #FF001E;}
+.black input[type="checkbox"]:checked + label:before { background: #000; border:1px solid #000;}
+
+.checkboxUl li {margin:12px 0 0 0; font-size:17px; position: relative;}
+.checkboxUl li:first-child {margin:0;}
+.checkboxUl li a {display: block; width:25px; height:25px; text-align: center; position: absolute; right:0;top:5px; color:#aeb2b6}
+.checkAllBox {font-size:18px; color:#202124; font-weight: 500;}
+
+/*layerbottom 테마별 색상*/
+.red .layerpopupBottom {border-top:1px solid #FF001E;}
+.red .layerpopupBottom a{color:#FF001E;}
+.red .layerpopupBottom:hover {background-color:#FF001E;}
+.red .layerpopupBottom:hover a{color:#fff;}
+.red .layerpopupBottom .halfBtnBox li:before { border-left:1px dashed #FF001E; }
+
+.green .layerpopupBottom {border-top:1px solid #01875F;}
+.green .layerpopupBottom a {color:#01875F;}
+.green .layerpopupBottom:hover {background-color:#01875F;}
+.green .layerpopupBottom:hover a{color:#fff;}
+.green .layerpopupBottom .halfBtnBox li:before { border-left:1px dashed #01875F; }
+
+
+.blue .layerpopupBottom {border-top:1px solid #1769e0;}
+.blue .layerpopupBottom a {color:#1769e0;}
+.blue .layerpopupBottom a:hover{background-color:#1769e0; color:#fff;}
+.blue .layerpopupBottom .halfBtnBox li:before { border-left:1px dashed #1769e0; }
+
+
+.black .layerpopupBottom {border-top:1px solid #000;}
+.black .layerpopupBottom a {color:#000;}
+.black .layerpopupBottom:hover {background-color:#000;}
+.black .layerpopupBottom:hover a{color:#fff;}
+.black .layerpopupBottom .halfBtnBox li:before { border-left:1px dashed #000; }
+
+/* 테마별 메뉴 색상 */
+.blue .qmmyInfo .icon-user {background-color:#1769e0; color:#fff;} 
+.green .qmmyInfo .icon-user {background-color:#01875F; color:#fff;}
+.red .qmmyInfo .icon-user {background-color:#FF001E; color:#fff;}
+.black .qmmyInfo .icon-user {background-color:#000; color:#fff;}
+
+/* 그외 결제 수단 선택 */
+.blue .etcPaymentList > li > a .icon  {background-color:#1769e0; color:#fff;} 
+.green .etcPaymentList > li > a .icon  {background-color:#01875F; color:#fff;} 
+.red .etcPaymentList > li > a .icon  {background-color:#FF001E; color:#fff;} 
+
+/*결제 성공, 실패 아이콘*/
+.blue .paySChek span {background-color:#1769e0;}
+.green .paySChek span {background-color:#01875F;}
+.red .paySChek span {background-color:#FF001E;}
+.black .paySChek span {background-color:#000;}
+
+
+
