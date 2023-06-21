@@ -56,4 +56,24 @@ public class AverageServiceImpl implements AverageService {
     public List<Map> selectFxprBfTnList(AverageVo averageVo) throws Exception {
         return averageDao.selectFxprBfTnList(averageVo);
     }
+
+    @Override
+    public int updateAverage(List<Map> list) throws Exception {
+        return averageDao.updateAverage(list);
+    }
+
+    @Override
+    public int selectFxprBfTnTotalCnt() throws Exception {
+        return averageDao.fxprBfTnTotalCnt();
+    }
+
+    @Override
+    public int updateTtAvgMember(Map ttData) throws Exception {
+        return averageDao.updateTtAvgMember(ttData);
+    }
+
+    @Override
+    public int selectMember() throws Exception {
+        return averageDao.selectMember();
+    }
 }

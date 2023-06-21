@@ -6,5 +6,9 @@
         <setting name="mapUnderscoreToCamelCase" value="true"/>
         <setting name="jdbcTypeForNull" value="NULL"/>
     </settings>
+
+    <typeAliases>
+        <typeAlias alias="camelMap" type="com.bowling.teamcover.util.CamelMap"/>
+    </typeAliases>
     
 </configuration>

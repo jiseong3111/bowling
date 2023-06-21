@@ -160,6 +160,20 @@
                             </div>
                         </td>
                     </tr>
+                    <tr>
+                        <th scope="row" class="c-table__row"><span class='c-require'>*</span> 사용여부</th>
+                        <td class="c-table__data is-left" >
+                            <div class="c-forms">
+                                <label for="emad" class="is-hidden"> 사용여부</label>
+                                <select id="cuno" class="c-forms__select"  name="cuno" >
+                                    <option value="">선택</option>
+                                    <c:forEach var="result" items="${cuList}" varStatus="status">
+                                        <option value="${result.cuno}" ${result.cuno eq resultInfo.cuno ? 'selected="selected"' : ''}><c:out value='${result.cunm}'/></option>
+                                    </c:forEach>
+                                </select>
+                            </div>
+                        </td>
+                    </tr>
                     </tbody>
                 </table>
             </div>

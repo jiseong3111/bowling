@@ -27,4 +27,12 @@ public interface AverageDao {
     List<AverageVo> selectMemberOneAvgList(AverageVo averageVo)throws Exception;
 
     List<Map> selectFxprBfTnList(AverageVo averageVo)throws Exception;
+
+    int updateAverage(List<Map> list)throws Exception;
+
+    int fxprBfTnTotalCnt()throws Exception;
+
+    int updateTtAvgMember(Map ttData)throws Exception;
+
+    int selectMember()throws Exception;
 }

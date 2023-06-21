@@ -58,11 +58,6 @@
 					</span> <span class="hamburger-label">Menu</span>
             </button>
 
-            <form id="masthead-search">
-                <input type="text" name="s" placeholder="Search" class="draw">
-                <button type="submit">&rarr;</button>
-            </form>
-
             <nav id="site-nav" role="navigation">
                 <div class="col">
                     <h4>회원관리</h4>
@@ -89,9 +84,9 @@
                     </ul>
                 </div>
                 <div class="col">
-                    <h4>Approach</h4>
+                    <h4>시스템관리</h4>
                     <ul>
-                        <li><a href="#">Digital Transformation</a></li>
+                        <li><a href="<c:url value='/cdMng/selectCdMngList.do'/>">코드관리</a></li>
                         <li><a href="#">Digital Readiness Tool</a></li>
                         <li><a href="#">Solution Partners</a></li>
                     </ul>

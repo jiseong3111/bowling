@@ -3,12 +3,27 @@ volumes:
   oracle_data: {}
 services:
   bowling-db: # username : system, password : oracle
+    #    image: wvbirder/database-enterprise:12.2.0.1-slim
     image: jaspeen/oracle-xe-11g
-    environment:
-      - ORACLE_SID=bowling
-      - ORACLE_PDB=wonjin
-      - ORACLE_PWD=1234
     ports:
-      - "1521:1521"
+      - "8089:1521"
     volumes:
       - oracle_data:/u01/app/oracle
+
+
+
+
+
+
+  # 컨테이너 띄우기
+  #  docker run --name oracle11g -d -p 1521:1521 jaspeen/oracle-xe-11g
+
+  # 실행중인 컨테이너 확인
+  #  docker ps
+
+  # oracle 컨테이너 접속, sqlplus 실행
+#  docker exec -it bowling-db-bowling-db-1 sqlplus
+
+# 유저명과 비밀번호 입력해서 sqlplus 접속
+#유저명 : sys as sysdba
+#비밀번호 : oracle             # 초기설정된 비밀번호
