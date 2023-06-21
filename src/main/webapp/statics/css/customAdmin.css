@@ -1,0 +1,68 @@
+
+.searchDeleteYnLabel {right: 130px;top: 40%;}
+input[type="text"].w35 {width:35%;}
+input[type="text"].w35.storeSearchInput {margin-bottom: 5px;}
+input[type="text"].w60 {width:60%;}
+input[type="text"].w80p {width:80%;}
+.rightPopupButton{text-align: right;}
+.text_green {color:green;}
+.storeDetailTopNavi {margin-bottom: 10px}
+.storeDetailStatusDiv {float: right}
+.storeDetailStatusDiv h2 {float: left;margin-right: 20px;}
+.tableStoreDetail{width:70%; border-spacing: 0px;  word-break: keep-all; margin-top: 100px;}
+.tableStoreDetail ul{display: table;table-layout: fixed;width: 100%;}
+.tableStoreDetail ul li{height:50px; display: table-cell; color:#000;  background:#f1f2f3; color:#000; font-weight: 500; position:relative; font-size: 14px;  border:1px solid #d7d7d7; text-align: center;}
+.tableStoreDetail ul button{height: 100%; width: 100%}
+.tableStoreDetail ul .on {background:#b7b7b7;}
+.storeDetailAlertSpan {color: red; display: none;}
+.cnsltPrcsHistCont {word-break: break-all;}
+.cnsltPrcsHistTable {table-layout: fixed;}
+.fileDiv {position: relative;overflow: hidden;width: 240px;}
+.fileChoiceBtn {color: #fff;background: #005caa;font-weight: 500;border: 1px solid #005caa;padding: 9px 15px;right: 0;position: absolute;border-radius: 2px;cursor: pointer;}
+.fileInput {position: absolute;clip: rect(0,0,0,0);}
+
+.openPopup .layerpopupIn {height: calc(100% - 250px);width: 1200px;position: absolute;margin-left: -600px;left: 50%;}
+.addMgrPopup .layerpopupIn .layerpopupCon {height: calc(100% - 70px - 60px);}
+.addHistPopup .layerpopupIn .layerpopupCon {height: calc(100% - 70px - 60px);}
+.appInsert {display: none;}
+
+/* 레이어 팝업 위 레이어팝업(alert) 창이 뜰 경우 먼저 뜬 레이어 팝업 뒤로뜨는 현상이 있어서 수정 진행 (내정보 변경) */
+.layerpopup.alert.on {z-index: 2000;}
+
+.table_normal tbody tr td .address {width:900px;}
+.table_normal tbody tr td .address .zipCode {width:120px;}
+.table_normal tbody tr td .address .addre {width:100%;}
+
+.adCTopNavi .adCTR > ul > li > span {padding-left:12px; color:#666; font-size:14px;}
+.adCTopNavi .adCTR > ul > li:last-child > span {font-weight: 500;}
+
+.width200 {width:200px}
+.width250 {width:250px}
+.width300 {width:300px}
+
+/* 페이징 영역 내 데이터 세로 중앙 정렬 - 20221206
+ * 페이징 영역 내 마우스 hover 시 테두리 제거 - 20221208
+ */
+.pagingBox a {height: auto; border:none;}
+.pagingBox a:hover {border:none;}
+
+
+
+/* dashboard의 달력 노출 중 전달 또는 다음달일 경우 글자를 회색으로 노출하기 위해 추가 - 20221207 */
+.gray {color: #e2e2e2}
+
+/* 캘린더 버튼 조정  */
+.calendarBox .ui-datepicker-trigger img {margin-top:0;}
+
+/* 회원관리 > 접속로그 팝업, 회원관리 > 푸시알람팝업 */
+.storeMemberAccessLogPopup .layerpopupIn, .storeMemberPushAlertLog  .layerpopupIn{width: 1000px;}
+.ajaxAccesslogTable {max-height: 400px;}
+
+.logLink a {color:#666;}
+.logLink a:before{display:inline-block; content:''; width:3px; height: 3px; border-radius: 50%; background-color:#666; vertical-align: middle;margin:4px 5px 4px 11px;}
+
+
+
+
+
+

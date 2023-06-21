@@ -31,6 +31,11 @@ public class AverageController {
     @Autowired
     private AverageService averageService;
 
+    @RequestMapping(value = "/test/test.do")
+    public String test(@ModelAttribute AverageVo averageVo, Model model) throws Exception {
+        return "/test/test";
+    }
+
     @RequestMapping(value = "/average/averageList.do")
     public String averageList(@ModelAttribute AverageVo averageVo, Model model) throws Exception {
 
