@@ -14,6 +14,8 @@ public class MemberServiceImpl implements MemberService {
     @Autowired
     MemberDao memberDao;
 
+//    private static final Logger logger = LoggerFactory.getLogger(MemberServiceImpl.class);
+
     @Override
     public List<MemberVo> selectCuList() throws Exception {
         return memberDao.selectCuList();

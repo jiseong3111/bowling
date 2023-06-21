@@ -2,12 +2,12 @@ package com.bowling.teamcover.member.web;
 
 import com.bowling.teamcover.member.service.MemberService;
 import com.bowling.teamcover.member.vo.MemberVo;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -20,6 +20,7 @@ public class MemberController {
     @Autowired
     MemberService memberService;
 
+    private Logger log = Logger.getLogger(MemberController.class);
 
     @RequestMapping(value = "/member/memberList.do")
     public String memberList(@ModelAttribute MemberVo memberVo, Model model) throws Exception {

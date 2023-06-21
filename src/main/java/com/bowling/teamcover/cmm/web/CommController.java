@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 
+
 /**
  * <pre>
  * 공통업무를 관리
@@ -35,9 +36,11 @@ public class CommController{
      * @return
      * @throws Exception
      */
+
     @RequestMapping(value = "/cmm/login.do")
     public String login(@ModelAttribute("loginCheck") String loginCheck, Model model) throws Exception {
 
         return "/login/login";
     }
+
 }

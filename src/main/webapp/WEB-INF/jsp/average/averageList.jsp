@@ -36,6 +36,7 @@
 
         function goUploadFile(){
             var reqUrl = "<c:url value='/average/averageUploadList.do'/>";
+            alert("파일 업로드 중입니다...");
             callAjaxException(reqUrl)
         }
 
@@ -58,9 +59,9 @@
                     } else if(data.result == "fail"){
                         alert("오류발생#####");
                     } else if(data.result == "notSize"){
-                        alert("엑셀에 회원 전체의 명단을 입력해 주세요.");
-                    } else if(data.result == ""){
-                        alert("파일 업로드중입니다.");
+                        alert("엑셀에 회원 명단을 다시 확인해 주세요.");
+                    } else if(data.result == "excelUpload"){
+                        alert("파일 업로드 완료.");
                         location.reload();
                     }
 
@@ -73,7 +74,7 @@
     </script>
 </head>
 <body >
-<div class="l-page" style="margin-top: 200px;">
+<div class="l-page">
     <form id="mainForm" name="mainForm" method="post">
         <input type="hidden" id="currPage" name="currPage" value="${search.currPage}" />
         <input type="hidden" id="iCnt" name="iCnt" value="0" />
@@ -220,12 +221,6 @@
                             </tbody>
                         </table>
                     </div>
-
-                    <div class="c-button-group c-button-group--margin-top-lg is-gutter is-right">
-                        <button type="button" class="c-button c-button--lg c-button--blue-line" onclick="goRegister('I')">신규등록</button>
-                    </div>
-
-
 
                 </div>
             </div>

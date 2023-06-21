@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.bowling.teamcover.cdMng.service.dao.CdMngDao">
+
+    <select id="selectCdMngList" parameterType="com.bowling.teamcover.cdMng.vo.CdMngVO" resultType="com.bowling.teamcover.cdMng.vo.CdMngVO">
+        <![CDATA[
+        SELECT  /* QueryID=com.bpsoft.ssbo.bo.bw.bw4.service.dao.CdMngMDAO.selectCdMngList */
+            *
+        FROM
+        (
+            SELECT
+                ROWNUM AS RNUM
+              , Z.*
+            FROM
+            (
+                SELECT CD_GRP_ID, CD_GRP_NM, CD_EXPL, CD_LTH, DECODE(CD_ITCE_VL,'*',USE_YN,CD_USE_YN) AS USE_YN, FST_REG_DTTM, FST_RGNT_NO,
+                  LAST_CHNG_DTTM, LAST_CHGR_NO, CD_ITCE_VL, CD_ITCE_NM, NVL(CD_ITCE_EXPL,CD_EXPL) AS CD_ITCE_EXPL,
+                  SORT_SEQ, CD_USE_YN, CD_FST_REG_DTTM, CD_FST_RGNT_NO, CD_LAST_CHNG_DTTM,
+                  CD_LAST_CHGR_NO
+                FROM (
+                    SELECT A.CD_GRP_ID, A.CD_GRP_NM, A.CD_EXPL, A.CD_LTH, A.USE_YN, A.FST_REG_DTTM,
+                        A.FST_RGNT_NO, A.LAST_CHNG_DTTM, A.LAST_CHGR_NO, B.CD_ITCE_VL,
+                        B.CD_ITCE_NM, B.CD_ITCE_EXPL, B.SORT_SEQ, B.USE_YN AS CD_USE_YN,
+                        B.FST_REG_DTTM AS CD_FST_REG_DTTM, B.FST_RGNT_NO AS CD_FST_RGNT_NO,
+                        B.LAST_CHNG_DTTM AS CD_LAST_CHNG_DTTM, B.LAST_CHGR_NO AS CD_LAST_CHGR_NO
+                    FROM TB_CD_GRP A, TB_CD B
+                     WHERE B.CD_GRP_ID = A.CD_GRP_ID
+                    UNION ALL
+                    SELECT CD_GRP_ID, CD_GRP_NM, CD_EXPL, CD_LTH, USE_YN, FST_REG_DTTM, FST_RGNT_NO,
+                        LAST_CHNG_DTTM, LAST_CHGR_NO, '*' AS CD_ITCE_VL, NULL, NULL,0, NULL, NULL,
+                        NULL, NULL, NULL
+                    FROM TB_CD_GRP A
+                    ) A
+                 WHERE 1=1
+        ]]>
+        <if test="searchText != null and searchText != ''">
+            <choose>
+                <when test="searchType == 0">
+                    AND CD_ITCE_VL = #{searchText}
+                </when>
+                <when test="searchType == 1">
+                    AND UPPER(CD_ITCE_NM)  LIKE '%' || UPPER(#{searchText}) || '%'
+                </when>
+                <when test="searchType == 2">
+                    AND CD_GRP_ID  = #{searchText}
+                </when>
+                <when test="searchType == 3">
+                    AND UPPER(CD_GRP_NM)  LIKE '%' || UPPER(#{searchText}) || '%'
+                </when>
+            </choose>
+        </if>
+                ORDER BY CD_GRP_ID, SORT_SEQ, CD_ITCE_VL
+            ) Z
+        )
+    </select>
+
+    <insert id="insertCdGrp" parameterType="com.bowling.teamcover.cdMng.vo.CdMngVO">
+        <![CDATA[
+        INSERT
+        INTO TB_CD_GRP
+        (CD_GRP_ID,
+         CD_GRP_NM,
+         CD_EXPL,
+         CD_LTH,
+         USE_YN,
+         FST_REG_DTTM,
+         FST_RGNT_NO,
+         LAST_CHNG_DTTM,
+         LAST_CHGR_NO)
+        SELECT LPAD(NVL(MAX(CD_GRP_ID), 0)+1,4,0),
+               #{cdGrpNm},
+               #{cdExpl},
+               #{cdLth},
+               #{useYn},
+               systimestamp,
+               #{lastChgrNo},
+               systimestamp,
+               #{lastChgrNo}
+        FROM TB_CD_GRP
+        WHERE CD_GRP_ID < '9000'
+        ]]>
+    </insert>
+
+    <select id="selectCdGrdList"  resultType="camelMap">
+        <![CDATA[
+        SELECT CD_GRP_ID, CD_GRP_NM, CD_EXPL, CD_LTH
+        FROM TB_CD_GRP
+        WHERE USE_YN = 'Y'
+        ORDER BY CD_GRP_ID
+        ]]>
+    </select>
+
+    <select id="selectCd" parameterType="com.bowling.teamcover.cdMng.vo.CdMngVO" resultType="camelMap">
+        <![CDATA[
+        SELECT
+            A.CD_GRP_ID,
+            A.CD_GRP_NM,
+            A.CD_EXPL,
+            A.CD_LTH,
+            B.CD_ITCE_VL,
+            B.CD_ITCE_NM,
+            B.CD_ITCE_EXPL,
+            B.SORT_SEQ,
+            B.USE_YN AS CD_USE_YN,
+            TO_CHAR(B.FST_REG_DTTM,'YYYY-MM-DD HH24:MI:SS') AS FST_REG_DTTM,
+            (SELECT MGR_NAME FROM TB_MGR_MSTB WHERE  MGR_NO = B.FST_RGNT_NO) AS  FST_RGNT_NM,
+            (SELECT MGR_ID FROM TB_MGR_MSTB WHERE  MGR_NO = B.FST_RGNT_NO) AS  FST_RGNT_ID,
+            B.FST_RGNT_NO AS FST_RGNT_NO,
+            TO_CHAR(B.LAST_CHNG_DTTM,'YYYY-MM-DD HH24:MI:SS') AS LAST_CHNG_DTTM,
+            (SELECT MGR_NAME FROM TB_MGR_MSTB WHERE  MGR_NO = B.FST_RGNT_NO) AS  LAST_CHGR_NM,
+            (SELECT MGR_ID FROM TB_MGR_MSTB WHERE  MGR_NO = B.FST_RGNT_NO) AS  LAST_CHGR_ID,
+            B.LAST_CHGR_NO AS LAST_CHGR_NO
+        FROM TB_CD_GRP A,
+             TB_CD B
+        WHERE B.CD_GRP_ID = A.CD_GRP_ID
+          AND a.cd_grp_id = #{cdGrpId}
+          AND b.CD_ITCE_VL = #{cdItceVl}
+        ]]>
+    </select>
+
+    <select id="selectCdCk" parameterType="Map"  resultType="Integer">
+        <![CDATA[
+        SELECT /* QueryID=com.bpsoft.ssbo.bo.bw.bw4.service.dao.CdMngMDAO.selectCdCk */
+            COUNT(*)
+        FROM TB_CD
+        WHERE CD_GRP_ID = #{cdGrpId}
+          AND CD_ITCE_VL = #{cdItceVl}
+        ]]>
+    </select>
+
+    <insert id="insertCd" parameterType="com.bowling.teamcover.cdMng.vo.CdMngVO">
+        <![CDATA[
+            INSERT /* QueryID=com.bpsoft.ssbo.bo.bw.bw4.service.dao.CdMngMDAO.insertCd */
+              INTO TB_CD
+                   (CD_GRP_ID,
+                   CD_ITCE_VL,
+                   CD_ITCE_NM,
+        ]]>
+        <if test="cdItceExpl != null and cdItceExpl != ''">
+            CD_ITCE_EXPL,
+        </if>
+        <if test="sortSeq != null and sortSeq != ''">
+            SORT_SEQ,
+        </if>
+
+        <![CDATA[
+                   USE_YN,
+                   FST_REG_DTTM,
+                   FST_RGNT_NO,
+                   LAST_CHNG_DTTM,
+                   LAST_CHGR_NO)
+            VALUES ( #{cdGrpId},
+                   #{cdItceVl},
+                   #{cdItceNm},
+        ]]>
+        <if test="cdItceExpl != null and cdItceExpl != ''">
+            #{cdItceExpl},
+        </if>
+        <if test="sortSeq != null and sortSeq != ''">
+            #{sortSeq},
+        </if>
+        <![CDATA[
+                   #{useYn},
+                   systimestamp,
+                   #{lastChgrNo},
+                   systimestamp,
+                   #{lastChgrNo})
+        ]]>
+    </insert>
+</mapper>

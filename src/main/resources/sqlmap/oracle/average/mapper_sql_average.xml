@@ -10,7 +10,7 @@
                       ,C.CU_NM
                       ,A.TT_GM_CNT
                       ,A.TT_SCR
-                      ,A.AVRG_SCR
+                      ,TO_NUMBER(A.AVRG_SCR) AS AVRG_SCR
                       ,B.MBNO
                  FROM TB_TT_AVG_LST A
                           INNER JOIN TB_MBR_MSTB B ON A.MBNO = B.MBNO
@@ -22,7 +22,7 @@
                 <if test="searchType1 != null and searchType1 != ''">
                     AND B.MBNO = #{searchType1}
                 </if>
-                 ORDER BY AVRG_SCR DESC
+                ORDER BY TO_NUMBER(A.AVRG_SCR) DESC
              ) Z
     </select>
 
@@ -37,10 +37,19 @@
              ,A.FXPR_BF_TN||'회차' AS FXPR_BF_TN
              ,C.CU_NM
              ,B.MBNO
+             ,TO_CHAR(TO_DATE(D.FXPR_BFDT),'YYYY-MM-DD') AS FXPR_BFDT
         FROM TB_AVG_LST A
-                INNER JOIN TB_MBR_MSTB B ON A.MBNO = B.MBNO
-                INNER JOIN TB_CU_MSTB C ON B.CUNO = C.CUNO
+                 INNER JOIN TB_MBR_MSTB B ON A.MBNO = B.MBNO
+                 INNER JOIN TB_CU_MSTB C ON B.CUNO = C.CUNO
+                 INNER JOIN TB_FXPR_BFDT D ON C.CUNO = D.CUNO AND D.FXPR_BF_TN = A.FXPR_BF_TN
         WHERE A.MBNO = #{mbno}
+        <if test="searchType != null and searchType != ''">
+            AND D.FXPR_BF_TN = SUBSTR(#{searchType},0,1)
+        </if>
+        <if test="searchType1 != null and searchType1 != ''">
+            AND D.FXPR_BFDT = #{searchType1}
+        </if>
+        ORDER BY A.FXPR_BF_TN
     </select>
 
     <insert id="insertFxprBfdt" parameterType="Map">
@@ -105,6 +114,37 @@
         FROM TB_FXPR_BFDT A
                  INNER JOIN TB_AVG_LST B ON A.FXPR_BF_TN = B.FXPR_BF_TN
         WHERE MBNO = #{mbno}
+    </select>
+
+    <update id="updateAverage" parameterType="Map">
+        <foreach collection="list" item="item" separator=";" open="DECLARE BEGIN" close="; END;">
+        UPDATE TB_AVG_LST
+           SET TT_SCR = #{item.ttScr},
+               F_GAME = #{item.fGame},
+               S_GAME = #{item.sGame},
+               T_GAME = #{item.tGame},
+               AVRG_SCR = #{item.avrgScr}
+        WHERE MBNO = #{item.mbno}
+          AND FXPR_BF_TN = #{item.fxprBfTn}
+        </foreach>
+    </update>
+
+    <update id="updateTtAvgMember" parameterType="Map">
+        UPDATE TB_TT_AVG_LST
+          SET TT_GM_CNT = #{ttGmCnt},
+              TT_SCR = #{ttScr},
+              AVRG_SCR = #{avrgScr}
+        WHERE MBNO = #{mbno}
+    </update>
+
+    <select id="fxprBfTnTotalCnt" resultType="int">
+        SELECT COUNT(*) AS fxprBfTnTotalCnt
+        FROM TB_FXPR_BFDT
+    </select>
+
+    <select id="selectMember" resultType="int">
+        SELECT COUNT(*) AS CNT
+        FROM TB_MBR_MSTB
     </select>
 
 </mapper>

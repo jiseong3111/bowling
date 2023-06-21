@@ -33,6 +33,16 @@ public class MemberVo extends PagingVO {
 
     private String rank;
 
+    private String useYn;
+
+    public String getUseYn() {
+        return useYn;
+    }
+
+    public void setUseYn(String useYn) {
+        this.useYn = useYn;
+    }
+
     public String getRank() {
         return rank;
     }

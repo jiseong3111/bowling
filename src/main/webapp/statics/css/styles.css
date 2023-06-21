@@ -61,7 +61,10 @@ body {
 img {
     border: 0;
 }
-
+.l-page{
+    position: absolute;
+    top: 100px;
+}
 .l-page__nav {
     position: fixed;
     top: 0;
