@@ -13,12 +13,12 @@
     </http>
 
     <authentication-manager>
-        <authentication-provider>
+        <authentication-provider ref="customUserAuthProvider">
             <user-service>
                 <user name="admin" password="{noop}admin" authorities="ROLE_ADMIN" />
                 <user name="user" password="{noop}user" authorities="ROLE_USER" />
             </user-service>
         </authentication-provider>
     </authentication-manager>
-
+    <bean id="customUserAuthProvider" class="com.bowling.teamcover.security.CustomUserAuthProvider" />
 </beans:beans>
