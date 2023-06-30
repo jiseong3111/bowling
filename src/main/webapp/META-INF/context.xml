@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Context path="/">
+<Context path="/" allowCasualMultipartParsing="true">
     <Resource auth="Container" defaultAutoCommit="false" driverClassName="oracle.jdbc.driver.OracleDriver" factory="org.apache.tomcat.jdbc.pool.DataSourceFactory" initialSize="10" maxActive="10" maxWait="10000" minIdle="3" name="ssdbt/jdbc" password="oracle" type="javax.sql.DataSource" url="jdbc:oracle:thin:@localhost:8089:XE" username="sys as sysdba" validationQuery="SELECT 1 FROM DUAL"/>
 </Context>
