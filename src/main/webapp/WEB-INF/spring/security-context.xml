@@ -15,6 +15,7 @@
         <intercept-url pattern="/statics/**" access="permitAll()" />
         <intercept-url pattern="/join" access="permitAll()" />
         <intercept-url pattern="/login" access="permitAll()" />
+        <intercept-url pattern="/test/**" access="permitAll()" />
         <intercept-url pattern="/**" access="hasRole('ROLE_USER')" />
 
 
