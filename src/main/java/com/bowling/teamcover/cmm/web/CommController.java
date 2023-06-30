@@ -28,19 +28,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class CommController{
-    /**
-     * 로그인 페이지
-     *
-     * @param loginCheck
-     * @param model
-     * @return
-     * @throws Exception
-     */
 
-    @RequestMapping(value = "/cmm/login.do")
-    public String login(@ModelAttribute("loginCheck") String loginCheck, Model model) throws Exception {
-
-        return "/login/login";
-    }
 
 }
