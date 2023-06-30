@@ -76,7 +76,7 @@
                 <div class="col">
                     <h4>Company</h4>
                     <ul>
-                        <li><a href="<c:url value='/test/test.do'/>">test</a></li>
+                        <li><a href="<c:url value='/test/test'/>">test</a></li>
                         <li><a href="#">Our Team</a></li>
                         <li><a href="#">Our Culture</a></li>
                         <li><a href="#">News</a></li>
