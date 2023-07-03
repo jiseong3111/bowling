@@ -8,7 +8,7 @@
         <div class="userBox">
             <a href="javascript:void(0);" class="userBtn">
                 <span class="userIcon"><span class="icon-user"></span></span>
-                <span class="userName" id="userName"><c:out value="${storeNm}   ${mgrNm}" />님</span>
+                <span class="userId" id="userId"><c:out value="${storeNm}   ${mgrNm}" />님</span>
                 <span class="userText">반갑습니다</span>
                 <span class="icon-down"></span>
             </a>
@@ -164,7 +164,7 @@
         COMMON.ajaxFormPost("/my/updateMyInfo", $("#frmBasicInfo"), function(data){
             COMMON.openAlert(data.resultMsg, function(){
                 // 화면전환 없이 부모창 내 로그아웃 옆 내 이름 text 변경
-                $("#userName").text('${storeNm}' + ' ' + $("#mgrNm").val());
+                $("#userId").text('${storeNm}' + ' ' + $("#mgrNm").val());
             });
         });
 

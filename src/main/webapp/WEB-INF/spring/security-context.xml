@@ -13,7 +13,8 @@
     <http use-expressions="true">
         <!--<intercept-url pattern="/resources/**" access="permitAll()" /> -->
         <intercept-url pattern="/statics/**" access="permitAll()" />
-        <intercept-url pattern="/join" access="permitAll()" />
+        <intercept-url pattern="/joinPage" access="permitAll()" />
+        <intercept-url pattern="/signUp" access="permitAll()" />
         <intercept-url pattern="/login" access="permitAll()" />
         <intercept-url pattern="/test/**" access="permitAll()" />
         <intercept-url pattern="/**" access="hasRole('ROLE_USER')" />
@@ -21,7 +22,7 @@
 
         <form-login login-page="/login"
                     default-target-url="/main"
-                    username-parameter="username"
+                    username-parameter="userId"
                     password-parameter="password"
                     authentication-failure-url="/login?error"
                     always-use-default-target='true'

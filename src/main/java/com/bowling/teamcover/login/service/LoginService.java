@@ -1,8 +1,9 @@
 package com.bowling.teamcover.login.service;
 
 
-import org.springframework.security.core.userdetails.UserDetailsService;
+import com.bowling.teamcover.login.vo.LoginVo;
 
-public abstract class LoginService implements UserDetailsService {
+public interface LoginService {
 
+    int signUp(LoginVo loginVo);
 }

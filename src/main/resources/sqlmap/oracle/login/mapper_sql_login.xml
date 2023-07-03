@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.bowling.teamcover.login.service.dao.LoginDao">
+
+
+    <insert id="signUp" parameterType="com.bowling.teamcover.login.vo.LoginVo">
+        <selectKey keyProperty="mbno" resultType="String" order="BEFORE">
+            SELECT NVL(MAX(MBNO)+1, 1) FROM TB_AUTH_LOGIN_MSTB
+        </selectKey>
+
+        INSERT INTO TB_AUTH_LOGIN_MSTB
+                        VALUES (
+                                   #{mbno},
+                                   #{userId},
+                                   #{password},
+                                    'token'
+                               )
+
+    </insert>
+</mapper>

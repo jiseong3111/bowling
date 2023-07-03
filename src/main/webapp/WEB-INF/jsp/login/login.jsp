@@ -11,7 +11,7 @@
                 <form id="frmLogin" action="j_spring_security_check" enctype="multipart/form-data" method="post">
                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                     <div class="loginInputBox">
-                        <div class="inputB"><span class="icon icon-user"></span><input type="text" id="username" name = "username" placeholder="아이디를 입력하세요."/></div>
+                        <div class="inputB"><span class="icon icon-user"></span><input type="text" id="userId" name = "userId" placeholder="아이디를 입력하세요."/></div>
                         <div class="inputB"><span class="icon-lock1 icon"></span><input type="password" id="password" name="password" placeholder="비밀번호를 입력하세요."/></div>
                         <div class="loginbtnBox"><button type="submit">로그인</button></div>
                     </div>
@@ -27,11 +27,11 @@
                     </div>
                 </form>
 
-                <div class="loginbtnBox"><button onclick="mbrJoin()">회원가입</button></div>
+                <div class="loginbtnBox"><button onclick="joinPageRedirect()">회원가입</button></div>
             </div>
         </div>
 <script>
-    function mbrJoin() {
-        location.replace("/join")
+    function joinPageRedirect() {
+        location.replace("/joinPage")
     }
 </script>
